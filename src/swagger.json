@@ -1,0 +1,93 @@
+{
+    "openapi": "3.0.0",
+  "info":{
+    "tittle": "Atlas",
+    "description": "This is a documentation from atlas",
+    "contact":{
+        "name": "Renato",
+        "email": "renatotheojunior@gmail.com"
+    },
+    "vesion": "1.0.0"
+  },
+  "paths":{
+    "/users":{
+        "post":{
+            "tags":["Users"],
+            "summary": "Create a user",
+            "description": "Create a new user",
+            "requestBody":{
+                "content":{
+                    "application/json":{
+                        "schema":{
+                            "type":"object",
+                            "properties":{
+                                "name":{
+                                    "type":"string"
+                                },
+                                "email":{
+                                    "type":"string"
+                                }
+                            },
+                            "example":{
+                                "name":"user name example",
+                                "email": "user@email.example"
+                            }
+                        }
+                    }
+                }
+            },
+            "responses":{
+                "201":{
+                    "description": "Create user with succes",
+                    "content":{
+                        "application/json":{
+                            "schema":{
+                                "type": "object",
+                                "properties":{
+                                    "name":{
+                                        "type":"string"
+                                    },
+                                    "email":{
+                                        "type":"string"
+                                    },
+                                    "user_id":{
+                                        "type":"string"
+                                    },
+                                    "created_at":{
+                                        "type": "string"
+                                    },
+                                    "updated_at":{
+                                        "type":"string"
+                                    }
+                                    
+                                }
+                            }
+                        }
+                    }
+                },
+                "400":{
+                    "description": "Email already created"
+                }
+            }
+        }
+    },
+    "/users/{user_id}/admin":{
+        
+        "patch":{
+            "tags":["Users"],
+            "summary": "Turn a user in admin",
+            "description": "Turn a user in admin",
+            "parameters":[{
+                "in": "path",
+                "name":"user_id",
+                "required":true,
+                "description": "The user id",
+                "schema":{
+                    "type": "string"
+                }    
+            }]
+        
+        }
+    }
+  }
+}
